@@ -1,5 +1,5 @@
 {
-  "name": "rawjsonvis",
-  "summary": "Displays graph data in an interactive JSON viewer",
-  "category": "VISUALISATION"
+  "name": "graphpolaris-ml-settings-api",
+  "summary": "Displays link prediction settings in an interactive JSON viewer",
+  "category": "MACHINE_LEARNING"
 }
