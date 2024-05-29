@@ -5,7 +5,7 @@
  * © Copyright Utrecht University
  * (Department of Information and Computing Sciences)
  */
-import type { GraphQueryResult, MLResults, SchemaGraph, Settings } from ".";
+import type { Settings } from ".";
 import type { ReceiveMessage, SendMessage } from "../internal";
 
 /**
