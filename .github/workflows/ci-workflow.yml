@@ -1,0 +1,12 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    types: ["opened", "synchronize", "reopened", "ready_for_review"]
+    branches: ["main"]
+
+jobs:
+  check:
+    uses: PolarExpress/ts-configs/.github/workflows/ci-workflow.yml@main

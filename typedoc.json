@@ -1,0 +1,29 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "GraphPolaris Visualization API",
+  "entryPoints": ["./src/react/index.ts", "./src/base/index.ts"],
+  "categorizeByGroup": false,
+  "gitRemote": "origin",
+  "searchCategoryBoosts": {
+    "React hooks": 2
+  },
+  "out": "./docs",
+  "readme": "./README.md",
+  "excludeInternal": true,
+  "navigationLinks": {
+    "GitHub": "https://github.com/PolarExpress/graphpolaris-vis-api" // TODO: set this to GitLab after migration.
+  },
+
+  "externalSymbolLinkMappings": {
+    "typescript": {
+      "Record": "https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type",
+      "Partial": "https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype"
+    },
+    "graphology-types": {
+      "Attributes": "https://graphology.github.io/attributes.html#graph-attributes"
+    },
+    "graphology": {
+      "SerializedGraph": "https://graphology.github.io/serialization.html#export"
+    }
+  }
+}
