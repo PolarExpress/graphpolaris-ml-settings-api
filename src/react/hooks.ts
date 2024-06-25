@@ -10,11 +10,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import type { ReceiveMessage } from "../internal";
 
-import {
-  type Settings,
-  receiveMessage,
-  sendMessage
-} from "../base";
+import { type Settings, receiveMessage, sendMessage } from "../base";
 
 /**
  * The context for providing the window object to the hooks and components.

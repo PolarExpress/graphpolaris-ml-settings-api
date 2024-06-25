@@ -8,7 +8,7 @@
 
 /**
  * @packageDocumentation Contains the basic GraphPolaris ml settings plugin API. This is required for any plugin, regardless of the framework used.
-
+ *
  * @categoryDescription Message event listeners
  * These are functions to listen for specific types of messages arriving.
  */
