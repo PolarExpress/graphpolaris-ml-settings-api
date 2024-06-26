@@ -6,7 +6,7 @@
  * (Department of Information and Computing Sciences)
  */
 import type { Settings } from ".";
-import type { ReadyMessage, ReceiveMessage, SendMessage } from "../internal";
+import type { MLReadyMessage, MLReceiveMessage, MLSendMessage } from "../internal";
 
 /**
  * Performs an action every time a message of the specified type is received.
@@ -23,20 +23,20 @@ import type { ReadyMessage, ReceiveMessage, SendMessage } from "../internal";
  * @internal
  */
 export function receiveMessage<
-  TFilter extends ReceiveMessage["type"],
-  TData extends Extract<ReceiveMessage, { type: TFilter }>["data"]
+  TFilter extends MLReceiveMessage["type"],
+  TData extends Extract<MLReceiveMessage, { type: TFilter }>["data"]
 >(
   typeFilter: TFilter,
   callback: (data: TData) => void,
   windowContext: Window = window
 ): () => void {
-  function updateMessage(event: MessageEvent<ReceiveMessage>) {
+  function updateMessage(event: MessageEvent<MLReceiveMessage>) {
     const data = event.data;
 
     if (data.type === typeFilter) callback(data.data as TData);
   }
 
-  const readyMessage: ReadyMessage = {
+  const readyMessage: MLReadyMessage = {
     data: undefined,
     type: `${typeFilter}Ready`
   };
@@ -57,7 +57,7 @@ export function receiveMessage<
  * @category Message event listeners
  */
 export function receiveSettings(callback: (data: Settings) => void) {
-  return receiveMessage("Settings", callback);
+  return receiveMessage("MLSettings", callback);
 }
 
 /**
@@ -69,7 +69,7 @@ export function receiveSettings(callback: (data: Settings) => void) {
  *
  * @internal
  */
-export function sendMessage(message: SendMessage) {
+export function sendMessage(message: MLSendMessage) {
   window.top?.postMessage(message, "*");
 }
 
@@ -84,6 +84,6 @@ export function sendMessage(message: SendMessage) {
 export function sendSettings(settings: Settings) {
   sendMessage({
     data: settings,
-    type: "Settings"
+    type: "MLSettings"
   });
 }

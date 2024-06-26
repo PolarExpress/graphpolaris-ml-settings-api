@@ -27,19 +27,19 @@ interface BaseMessage {
  *
  * @internal
  */
-export interface SettingsMessage extends BaseMessage {
+export interface MLSettingsMessage extends BaseMessage {
   data: Settings;
-  type: "Settings";
+  type: "MLSettings";
 }
 
 /**
  * A message that is sent from the frontend to request the default config. The
- * response should be a {@link SettingsMessage}.
+ * response should be a {@link MLSettingsMessage}.
  *
  * @internal
  */
-export interface SettingsRequestMessage extends BaseMessage {
-  type: "SettingsRequest";
+export interface MLSettingsRequestMessage extends BaseMessage {
+  type: "MLSettingsRequest";
   data: undefined;
 }
 
@@ -48,9 +48,9 @@ export interface SettingsRequestMessage extends BaseMessage {
  *
  * @internal
  */
-export interface ReadyMessage extends BaseMessage {
+export interface MLReadyMessage extends BaseMessage {
   data: undefined;
-  type: `${ReceiveMessage["type"]}Ready`;
+  type: `${MLReceiveMessage["type"]}Ready`;
 }
 
 /**
@@ -58,11 +58,11 @@ export interface ReadyMessage extends BaseMessage {
  *
  * @internal
  */
-export type ReceiveMessage = SettingsMessage | SettingsRequestMessage;
+export type MLReceiveMessage = MLSettingsMessage | MLSettingsRequestMessage;
 
 /**
  * The types of messages that an add-on can send.
  *
  * @internal
  */
-export type SendMessage = ReadyMessage | SettingsMessage;
+export type MLSendMessage = MLReadyMessage | MLSettingsMessage;

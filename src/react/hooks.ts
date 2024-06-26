@@ -8,7 +8,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-import type { ReceiveMessage } from "../internal";
+import type { MLReceiveMessage } from "../internal";
 
 import { type Settings, receiveMessage, sendMessage } from "../base";
 
@@ -68,8 +68,8 @@ export const windowContext = createContext<Window>(window);
  * @internal
  */
 function useMessage<
-  TFilter extends ReceiveMessage["type"],
-  TData extends Extract<ReceiveMessage, { type: TFilter }>["data"]
+  TFilter extends MLReceiveMessage["type"],
+  TData extends Extract<MLReceiveMessage, { type: TFilter }>["data"]
 >(typeFilter: TFilter): TData | undefined;
 
 /**
@@ -85,13 +85,13 @@ function useMessage<
  * @internal
  */
 function useMessage<
-  TFilter extends ReceiveMessage["type"],
-  TData extends Extract<ReceiveMessage, { type: TFilter }>["data"]
+  TFilter extends MLReceiveMessage["type"],
+  TData extends Extract<MLReceiveMessage, { type: TFilter }>["data"]
 >(typeFilter: TFilter, defaultValue: TData): TData;
 
 function useMessage<
-  TFilter extends ReceiveMessage["type"],
-  TData extends Extract<ReceiveMessage, { type: TFilter }>["data"]
+  TFilter extends MLReceiveMessage["type"],
+  TData extends Extract<MLReceiveMessage, { type: TFilter }>["data"]
 >(typeFilter: TFilter, defaultValue?: TData) {
   const window = useContext(windowContext);
   const [message, setMessage] = useState(defaultValue);
@@ -111,18 +111,12 @@ function useMessage<
  * Returns the currently used settings and a function to update the used
  * settings.
  *
- * @remarks
- *   This hook should only be used for the settings component. The update
- *   function's messages are ignored by GraphPolaris if it is called from the
- *   visualization component. For the visualization component, use the
- *   {@link useSettingsData} hook instead.
- *
  * @example
  *   ```tsx
- *     type VisSettings = { theme: "dark" | "light" };
+ *     type MLSettings = { theme: "dark" | "light" };
  *
  *     export default function Settings() {
- *       const [config, updateConfig] = useSettings<VisSettings>({
+ *       const [config, updateConfig] = useSettings<MLSettings>({
  *         theme: "dark"
  *       });
  *
@@ -158,15 +152,15 @@ function useMessage<
 export function useSettings<T extends Settings>(
   defaultValue: T
 ): readonly [T, UpdateFunction<T>] {
-  const settingsData = useMessage("Settings", defaultValue);
+  const settingsData = useMessage("MLSettings", defaultValue);
   const sendSettings: UpdateFunction<T> = changes =>
     sendMessage({
       data: changes,
-      type: "Settings"
+      type: "MLSettings"
     });
 
   useEffect(() => {
-    const unsubscribe = receiveMessage("SettingsRequest", () =>
+    const unsubscribe = receiveMessage("MLSettingsRequest", () =>
       sendSettings(defaultValue)
     );
     return unsubscribe;
