@@ -29,7 +29,7 @@ interface BaseMessage {
  */
 export interface SettingsMessage extends BaseMessage {
   data: Settings;
-  type: "Settings";
+  type: "MLSettings";
 }
 
 /**
@@ -39,7 +39,7 @@ export interface SettingsMessage extends BaseMessage {
  * @internal
  */
 export interface SettingsRequestMessage extends BaseMessage {
-  type: "SettingsRequest";
+  type: "MLSettingsRequest";
   data: undefined;
 }
 

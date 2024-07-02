@@ -158,15 +158,15 @@ function useMessage<
 export function useSettings<T extends Settings>(
   defaultValue: T
 ): readonly [T, UpdateFunction<T>] {
-  const settingsData = useMessage("Settings", defaultValue);
+  const settingsData = useMessage("MLSettings", defaultValue);
   const sendSettings: UpdateFunction<T> = changes =>
     sendMessage({
       data: changes,
-      type: "Settings"
+      type: "MLSettings"
     });
 
   useEffect(() => {
-    const unsubscribe = receiveMessage("SettingsRequest", () =>
+    const unsubscribe = receiveMessage("MLSettingsRequest", () =>
       sendSettings(defaultValue)
     );
     return unsubscribe;

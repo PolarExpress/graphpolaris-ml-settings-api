@@ -57,7 +57,7 @@ export function receiveMessage<
  * @category Message event listeners
  */
 export function receiveSettings(callback: (data: Settings) => void) {
-  return receiveMessage("Settings", callback);
+  return receiveMessage("MLSettings", callback);
 }
 
 /**
@@ -84,6 +84,6 @@ export function sendMessage(message: SendMessage) {
 export function sendSettings(settings: Settings) {
   sendMessage({
     data: settings,
-    type: "Settings"
+    type: "MLSettings"
   });
 }
